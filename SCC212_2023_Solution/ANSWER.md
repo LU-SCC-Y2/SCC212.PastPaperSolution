@@ -92,22 +92,71 @@ public class Main {
 Question 2c
 tail recursive, because the recursion happens in the end of the method.
 
-Question 3a
-i. Advanced Programming
-ii. -10 
+Question 4a
+i. Error
+ii. {a => 10 ,b => 20}
 
-Question 3b
-function rotate(array, k) {
-    newArray1 = array.slice(array.length - k);
-    newArray2 = array.slice(0, array.length - k);
-    return newArray1.concat(newArray2);
+Question 4b
+{year:2023, color:'black'}
+
+Question 4c
+reverseTuple (Target) ->
+    lists:revese(Target).
+
+Question 4d. 
+class DateManager{
+    const currentDate = new Date();
+
+    this.date = {
+        day: currentDate.getDate(),
+        month: currentDate.getMonth() + 1,
+        year: currentDate.getYear(),
+    };
+
+    setDay(day){
+        if (day >= 1 && day <= currentDate.daysInMonth()){
+            this.date.day = day;
+            event.emit('set', this.date);
+        }
+    }
+
+    setMonth(month){
+        if (month <= 12 && month >= 1){
+            this.date.month = month;
+            event.emit('set', this.date);
+        }
+    }
+
+    setYear(year){
+        if (year >= 0 && year <= 9999){
+            this.date.year = year;
+            event.emit('set', this.date);
+        }
+    }
+
+    getDate(){
+        console.log(this.date);
+        event.emit('get', this.date);
+    }
+
+    advanceDate(){
+        event.emit('advance', this.date);
+    }
 }
 
-array = [0, 1, 2, 3, 4, 5]
-console.log(rotate(array, 2));
+const DateManager = new DateManager();
 
-Question 3c
+DateManager.on('set', (date)=>{
+    console.log('set to: ', date);
+})
 
-Question 3d
+DateManager.on('get', (date)=>{
+    console.log('get date: ', date);
+})
 
+DateManager.on('advance', (date)=>{
+    console.log('advanced date: ', date);
+})
 
+DateManager.advanceDate();
+DateManager.getDate();
