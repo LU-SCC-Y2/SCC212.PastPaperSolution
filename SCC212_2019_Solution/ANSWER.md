@@ -120,7 +120,7 @@ need to know what the previous function does, thus it is more flexible.
 const result = 
 nba_teams.reduce(
     (acc, elem) => {
-            return acc + elem.reduce((elemAcc, string) =>{
+            return acc + Object.values(elem).reduce((elemAcc, string) =>{
                 return elemAcc + string.length
             }, 0)
     }, 0);
